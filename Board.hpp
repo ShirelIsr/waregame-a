@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-
+#include 'Soldier.hpp'
 
 namespace WarGame {
 
@@ -12,7 +12,7 @@ class Board {
     enum MoveDIR { Up, Down, Right, Left };
     
     Board(uint numRows, uint numCols) : 
-      board(numRows, std::vector<Soldier*>(numCols, nullptr)) {}
+      board(numRows, std::vector<Solldier*>(numCols, nullptr)) {}
 
     // operator for putting soldiers on the game-board during initialization.
     Soldier*& operator[](std::pair<int,int> location);

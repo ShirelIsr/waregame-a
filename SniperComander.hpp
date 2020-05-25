@@ -3,5 +3,5 @@
 class SniperComander: public Soldier{
 public:
    SniperComander(const int &name, int hp=120, int power=100) :  Soldier(name, hp, power) {}
-    void specialMove(Soldier& other);
+    void specialMove(Soldier& other)  const override  {  cout << "SniperComander special move\n"; }
 };

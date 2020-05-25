@@ -14,5 +14,6 @@ public:
    int getName() ;
     bool isAlive() ;
     void attack(Soldier& other) ;
+    virtual void specialMove(Soldier& other) const { cout << "Soldier special move\n"; }
 };
 
