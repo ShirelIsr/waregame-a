@@ -1,7 +1,16 @@
 #include "Soldier.hpp"
 
-class FootCommander: public Soldier{
+
+#ifndef WARGAME_A_FOOTCOMMANDER_HPP
+#define WARGAME_A_FOOTCOMMANDER_HPP
+
+class FootCommander : public Soldier{
 public:
-    FootCommander(const int &name, int hp=150, int power=20) :  Soldier(name, hp, power) {}
-    void specialMove(Soldier& other)  {  cout << "FootCommander special move\n"; }
+
+    int damage_per_activity = 20 ;
+    virtual void action();
+    FootCommander(int player) : Soldier(player,150) {} ;
+
 };
+
+#endif //WARGAME_A_FOOTCOMMANDER_HPP
