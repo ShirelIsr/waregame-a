@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-#include 'Soldier.hpp'
+#include "Soldier.hpp"
 
 namespace WarGame {
 
