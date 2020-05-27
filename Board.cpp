@@ -6,20 +6,19 @@ void WarGame::Board::move(uint player_number, std::pair<int,int> source, MoveDIR
     if(player_number>2 ||player_number<1 )
     {
         cout<<"need to write exeption no player like this"<<endl;
-        // throw std::invalid_argument("there is no player like this");
     }
     else if( source.first> board.size()-1 || source.first<0||source.second <0 ||source.second >board.at(0).size()-1 ){
         cout<<"need to write exeption source is not on the board"<<endl;
-        // throw std::invalid_argument("there is no source on the board");
+
     }
     else if((board[source.first][source.second] == nullptr) || (board[source.first][source.second]->player != player_number))
     {
         cout<<"need to write exeption none player of your team"<<endl;
-        // throw std::invalid_argument("none plyaer from your team");
+    
     }
     else if(!isLegalMove(source , direction)){
         cout<<"need to write exeption not legal move"<<endl;
-        // throw std::invalid_argument("iliegal move");
+
     }
     else
     {
@@ -27,23 +26,27 @@ void WarGame::Board::move(uint player_number, std::pair<int,int> source, MoveDIR
         Soldier* temp = board[source.first][source.second];
 
         board[source.first][source.second]= nullptr;
-
-        int x = source.first,y=source.second;
+        int x = source.first;
+        int y=source.second;
 
         if(direction==MoveDIR::Left)
-        {y--;
+        {
+            y--;
         board[source.first][source.second-1]=temp;
         }
         else if(direction==MoveDIR::Right)
-        {y++;
+        {
+            y++;
         board[source.first][source.second+1]=temp;
         }
         else  if(direction==MoveDIR::Down)
-        {x--;
+        {
+            x--;
         board[source.first-1][source.second]=temp;
         }
         else if(direction==MoveDIR::Up)
-        {x++;
+        {
+            x++;
         board[source.first+1][source.second]=temp;
           }
         board[x][y]->action();
@@ -93,7 +96,8 @@ std::pair<int,int> WarGame::Board::findHighest(uint player_number, pair<int, int
 }
 
 
-bool WarGame::Board::isLegalMove(std::pair<int,int> source , MoveDIR direction){
+bool WarGame::Board::isLegalMove(std::pair<int,int> source , MoveDIR direction)
+{
     if(direction==MoveDIR::Up)
     {
         if((source.first==7) || (board[source.first+1][source.second]!=nullptr))

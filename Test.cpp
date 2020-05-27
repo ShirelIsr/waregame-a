@@ -11,49 +11,51 @@ namespace WarGame {
     WarGame::Board board(10, 10);
     TEST_CASE ("moves && constructors of FootCommender") {
 
+    CHECK(!board.has_soldiers(1));
          board[{1, 1}] = new FootCommander(1);
-         board[{0, 3}] = new FootCommander(1);
-         board[{0, 7}] = new FootCommander(1);
+         board[{4, 3}] = new FootCommander(1);
+         board[{3, 7}] = new FootCommander(1);
 
-                CHECK(board.has_soldiers(1));
+            
                 CHECK(board[{1, 1}]);
                 CHECK(board[{1, 1}]);
-                CHECK(board[{0, 3}]); 
-                CHECK(board[{0, 7}]);
+                CHECK(board[{4, 3}]); 
+                CHECK(board[{3, 7}]);
                 CHECK(board.has_soldiers(1));
                 CHECK(!board.has_soldiers(2));
 
-        board[{7, 0}] = new FootCommander(2);
-        board[{7, 3}] = new FootCommander(2);
-        board[{7, 7}] = new FootCommander(2);
+        board[{7, 1}] = new FootCommander(2);
+        board[{7, 5}] = new FootCommander(2);
+        board[{7, 8}] = new FootCommander(2);
 
-                CHECK(board[{7, 0}]);
-                CHECK(board[{7, 3}]);
-                CHECK(board[{7, 7}]);
+                CHECK(board[{7, 1}]);
+                CHECK(board[{7, 5}]);
+                CHECK(board[{7,8}]);
                 CHECK(board.has_soldiers(2));
                 CHECK(board.has_soldiers(1));
-                CHECK(board.has_soldiers(2));
+        
 
 
     }
 
-    TEST_CASE ("FootSoldier VS FootCommander") {//19
+    TEST_CASE ("FootSoldier VS FootCommander") 
+    {
         WarGame::Board board(6, 6);
 
-                CHECK(!board.has_soldiers(1));
+        CHECK(!board.has_soldiers(1));
 
         board[{0, 0}] = new FootSoldier(1);
         board[{1, 1}] = new FootCommander(1);
         board[{0, 1}] = new FootSoldier(1);
         board[{0, 2}] = new FootSoldier(1);
 
-                CHECK(board[{0, 0}]);
-                CHECK(board[{0, 0}]);
-                CHECK(board.has_soldiers(1));
-                CHECK(!board.has_soldiers(2));
+         CHECK(board[{0, 0}]);
+         CHECK(board[{0, 0}]);
+         CHECK(board.has_soldiers(1));
+         CHECK(!board.has_soldiers(2));
 
         for (int i = 0; i <= 5; i++)
-         {
+        {
             board[{5, i}] = new FootSoldier(2);
                     CHECK(board[{5, i}]);
         }
@@ -94,15 +96,15 @@ namespace WarGame {
                 CHECK(!board.has_soldiers(1));
         board[{5, 1}] = new FootSoldier(1);
         // CHECK_THROWS(board[{5,2}] = new FootSoldier(3));
-        CHECK_THROWS(board.move(1, {6, 1}, WarGame::Board::MoveDIR::Up)); //no soldier their
-        CHECK_THROWS(board.move(1, {6, 1}, WarGame::Board::MoveDIR::Up)); //no soldier their
-        CHECK_THROWS(board.move(2, {5, 1}, WarGame::Board::MoveDIR::Up)); //no soldier their
-        CHECK_THROWS(board.move(2, {5, 1}, WarGame::Board::MoveDIR::Down)); //no soldier their
-        CHECK_THROWS(board.move(2, {5, 1}, WarGame::Board::MoveDIR::Down)); //no soldier their
-        CHECK_THROWS(board.move(2, {5, 1}, WarGame::Board::MoveDIR::Right)); //no soldier their
-        CHECK_THROWS(board.move(2, {5, 1}, WarGame::Board::MoveDIR::Right)); //no soldier their
-        CHECK_THROWS(board.move(2, {5, 1}, WarGame::Board::MoveDIR::Left)); //no soldier their
-        CHECK_THROWS(board.move(2, {5, 1}, WarGame::Board::MoveDIR::Left)); //no soldier their
+        CHECK_THROWS(board.move(1, {2, 1}, WarGame::Board::MoveDIR::Up));
+        CHECK_THROWS(board.move(1, {2, 1}, WarGame::Board::MoveDIR::Up)); 
+        CHECK_THROWS(board.move(2, {4, 1}, WarGame::Board::MoveDIR::Up)); 
+        CHECK_THROWS(board.move(2, {4, 1}, WarGame::Board::MoveDIR::Down)); 
+        CHECK_THROWS(board.move(2, {4, 1}, WarGame::Board::MoveDIR::Down)); 
+        CHECK_THROWS(board.move(2, {4, 1}, WarGame::Board::MoveDIR::Right)); 
+        CHECK_THROWS(board.move(2, {4, 1}, WarGame::Board::MoveDIR::Right)); 
+        CHECK_THROWS(board.move(2, {4, 1}, WarGame::Board::MoveDIR::Left)); 
+        CHECK_THROWS(board.move(2, {4, 1}, WarGame::Board::MoveDIR::Left));
                 CHECK(!board.has_soldiers(2));
                 CHECK(!board.has_soldiers(2));
         board[{5, 4}] = new FootSoldier(2);
