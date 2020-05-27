@@ -1,4 +1,3 @@
-#pragma once
 /*#include <iostream>
 
 //using std::cout, std::endl, std::string;
@@ -25,19 +24,21 @@ public:
 
 */
 
+#pragma once
 
-#ifndef WARGAME_A_SOLDIER_HPP
-#define WARGAME_A_SOLDIER_HPP
+#include <iostream>
 
-#include "iostream"
+namespace WarGame {
+    class Board;
 
-class Soldier{
-public:
-    int initial_health_points;
-    int player;
+    class Soldier {
+    public:
+        int initial_health_points;
+        int player;
+        Soldier(int player, int hp) : player(player), initial_health_points(hp) {};
+        virtual ~Soldier() { std::cout << "Destructing base \n"; };
+        virtual void action() = 0;
 
-    virtual void action() = 0;
-    Soldier(int player,int hp) : player(player) , initial_health_points(hp){};
-};
+    };
 
-#endif //WARGAME_A_SOLDIER_HPP
+}

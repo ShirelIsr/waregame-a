@@ -25,9 +25,11 @@ void specialMove(Soldier &other) { cout << "Soldier special move\n"; }*/
 #include "FootCommander.hpp"
 #include <iostream>
 
-void FootSoldier::action() {
+void WarGame::FootSoldier::action() {
     std::cout<<"footSoldier action"<<std::endl;
 }
-void FootCommander::action(){
+void WarGame::FootCommander::action(){
     std::cout<<"footCommander action"<<std::endl;
 }
+WarGame::FootSoldier::~FootSoldier(){}
+WarGame::FootCommander::~FootCommander(){}
