@@ -6,8 +6,6 @@ using namespace std;
 
 namespace WarGame{
 
-        Board(uint numRows, uint numCols) : 
-      board(numRows, std::vector<Solldier*>(numCols, nullptr)) {}
 
 
     Soldier*& operator[](std::pair<int,int> location)
