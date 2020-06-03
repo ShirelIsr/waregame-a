@@ -3,54 +3,56 @@
 
 void WarGame::Board::move(uint player_number, std::pair<int,int> source, MoveDIR direction)
 {
-    if(player_number>2 ||player_number<1 )
-    {
-        cout<<"need to write exeption no player like this"<<endl;
-    }
-    else if( source.first> board.size()-1 || source.first<0||source.second <0 ||source.second >board.at(0).size()-1 ){
-        cout<<"need to write exeption source is not on the board"<<endl;
+        Soldier* temp = (*this)[source];
+          if(temp->getPlayerNum() != player_number) __throw_invalid_argument("ERR,The soldier belongs to the other player");
+        if(temp==nullptr) __throw_invalid_argument("ERR, ther is no soldier ");
+      
+     //   board[source.first][source.second]= nullptr;
+        
+        pair<int,int> dest;
 
-    }
-    else if((board[source.first][source.second] == nullptr) || (board[source.first][source.second]->player != player_number))
-    {
-        cout<<"need to write exeption none player of your team"<<endl;
-    
-    }
-    else if(!isLegalMove(source , direction)){
-        cout<<"need to write exeption not legal move"<<endl;
-
-    }
-    else
-    {
-        cout<<"played"<<endl;
-        Soldier* temp = board[source.first][source.second];
-
-        board[source.first][source.second]= nullptr;
-        int x = source.first;
-        int y=source.second;
-
-        if(direction==MoveDIR::Left)
+        switch (direction)
         {
-            y--;
-        board[source.first][source.second-1]=temp;
+        case Down:
+        {
+            dest.first=source.first-1;
+            dest.second=source.second;
+             break;
         }
-        else if(direction==MoveDIR::Right)
+        case Up:
         {
-            y++;
-        board[source.first][source.second+1]=temp;
+            dest.first=source.first+1;
+            dest.second=source.second;
+             break;
         }
-        else  if(direction==MoveDIR::Down)
-        {
-            x--;
-        board[source.first-1][source.second]=temp;
+        case Right:
+          {
+            dest.first=source.first;
+            dest.second=source.second+1;
+             break;
         }
-        else if(direction==MoveDIR::Up)
+        case Left:
         {
-            x++;
-        board[source.first+1][source.second]=temp;
-          }
-        board[x][y]->action();
-    }
+            dest.first=source.first;
+            dest.second=source.second+1;
+             break;
+        }
+        default:
+            break;
+        }
+
+        //check range
+        if((dest.first<0)||(dest.second<0) ||(dest.first>= board.size())||(dest.second>=board.size())
+         __throw_out_of_range("ERR,Exceeded game board limits");
+         
+         if((*this)[dest] != nullptr)
+         {
+             throw invalid_argument("ERR, A soldier already exists in this location");
+         }
+
+        (*this)[source]=nullptr;
+        (*this)[dest]=temp;
+        (temp)->action(board,dest);
 
 }
 std::pair<int,int> WarGame::Board::findNearest(uint player_number,std::pair<int,int> source){
@@ -98,35 +100,45 @@ std::pair<int,int> WarGame::Board::findHighest(uint player_number, pair<int, int
 
 bool WarGame::Board::isLegalMove(std::pair<int,int> source , MoveDIR direction)
 {
-    if(direction==MoveDIR::Up)
-    {
-        if((source.first==7) || (board[source.first+1][source.second]!=nullptr))
+   pair<int,int> dest;
+
+        switch (direction)
         {
-            return false;
-        }
-    }
-    else if((direction==MoveDIR::Down)|| (board[source.first-1][source.second]!=nullptr))
-    {
-        if(source.first==0)
-         {
-            return false;
-        }
-    }
-    else if((direction==MoveDIR::Left)|| (board[source.first][source.second-1]!=nullptr))
-    {
-        if(source.second==0)
+        case Down:
         {
-            return false;
+            dest.first=source.first-1;
+            dest.second=source.second;
+             break;
         }
-    }
-    else if((direction==MoveDIR::Right)||( board[source.first][source.second+1]!=nullptr))
-    {
-        if(source.second==7)
+        case Up:
         {
-            return false;
+            dest.first=source.first+1;
+            dest.second=source.second;
+             break;
         }
-    }
-    return true;
+        case Right:
+          {
+            dest.first=source.first;
+            dest.second=source.second+1;
+             break;
+        }
+        case Left:
+        {
+            dest.first=source.first;
+            dest.second=source.second+1;
+             break;
+        }
+        default:
+            break;
+        }
+
+        //check range
+        if((dest.first<0)||(dest.second<0) ||(dest.first>= board.size())||(dest.second>=board.size())
+        {
+            return true;
+        }
+        return false;
+         
 
 }
 

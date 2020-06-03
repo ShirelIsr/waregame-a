@@ -11,7 +11,7 @@ namespace WarGame {
         int damage_per_activity = 10;
         FootSoldier(int player) : Soldier(player, 100) {};
         ~FootSoldier();
-        virtual void action();
+        void action(vector<vector<Soldier*>> &board, pair<int,int> source);
     };
 }
 

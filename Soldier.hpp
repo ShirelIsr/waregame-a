@@ -34,10 +34,22 @@ namespace WarGame {
     class Soldier {
     public:
         int initial_health_points;
+   //int hp;
         int player;
-        Soldier(int player, int hp) : player(player), initial_health_points(hp) {};
+        int damge;
+        Soldier(int player, int hp,int dm) : player(player), initial_health_points(hp), damge(dm){};
         virtual ~Soldier() { std::cout << "Destructing base \n"; };
         virtual void action() = 0;
+         
+        int getHP(){ return initial_health_points; }
+        int setHP(int h) {hp=p;}
+        int getDamge(){return damge;}
+        int getPlayerNum(){return player;}
+
+
+
+    
+
 
     };
 
