@@ -1,18 +1,19 @@
 #pragma once
-#ifndef WARGAME_A_PARAMEDIC_HPP
-#define WARGAME_A_PARAMEDIC_HPP
+//#ifndef WARGAME_A_PARAMEDIC_HPP
+//#define WARGAME_A_PARAMEDIC_HPP
+
 
 #include "Soldier.hpp"
+using namespace std;
 
-namespace WarGame {
-    class Board;
+const int damge_p = 0;
+const int max_hp_p =100;
+ 
     class Paramedic : public Soldier {
     public:
-        int damage_per_activity = 50;
-        Paramedic(int player) : Soldier(player, 100) {};
-        ~Paramedic();
+        Paramedic(int player) : Soldier(player,max_hp_p,damge_p) {};
+        Paramedic(int player,int max_hp,int damge) : Soldier(player,max_hp,damge) {};
         void action(vector<vector<Soldier*>> &board, pair<int,int> source);
     };
-}
 
-#endif //WARGAME_A_PARAMEDIC_HPP
+//#endif //WARGAME_A_PARAMEDIC_HPP

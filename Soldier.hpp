@@ -1,56 +1,24 @@
-/*#include <iostream>
-
-//using std::cout, std::endl, std::string;
-
-class Soldier {
-protected:
-    int name;
-    int hp;
-    int power;
-protected:
-    void applyDamageTo(Soldier &target, int damage) const {}
-
-public:
-    Soldier(const int &name, int hp, int power) : name(name), hp(hp), power(power) {}
-
-    int getName();
-
-    bool isAlive();
-
-    void attack(Soldier &other);
-
-    virtual void specialMove(Soldier &other) const { std::cout << "Soldier special move\n"; }
-};
-
-*/
-
 #pragma once
-
 #include <iostream>
 
-namespace WarGame {
-    class Board;
-
+namespace std{
     class Soldier {
-    public:
-        int initial_health_points;
-   //int hp;
-        int player;
-        int damge;
-        Soldier(int player, int hp,int dm) : player(player), initial_health_points(hp), damge(dm){};
+    private:
+        uint max_health_points;
+        uint cur_health_points;
+        uint player;
+        uint action_damge;
+
+        public:
+        Soldier(int player, int max_hp,int demge) : player(player), max_health_points(max_hp),cur_health_points(max_hp), action_damge(demge){};
         virtual ~Soldier() { std::cout << "Destructing base \n"; };
-        virtual void action() = 0;
-         
-        int getHP(){ return initial_health_points; }
-        int setHP(int h) {hp=p;}
-        int getDamge(){return damge;}
+        virtual void action();
+        int getHP(){ return cur_health_points; }
+        void setHP(int hp) {cur_health_points=hp;}
+        int getDamge(){return action_damge;}
         int getPlayerNum(){return player;}
-
-
-
-    
-
+        int getMaxHP(){return max_health_points;}
 
     };
-
 }
+

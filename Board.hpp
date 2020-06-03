@@ -3,9 +3,9 @@
 #include <vector>
 #include <stdexcept>
 #include <cmath>
-#include "Soldier.hpp"
-#include "FootSoldier.hpp"
 #include "FootCommander.hpp"
+#include "ParamedicCommander.hpp"
+#include "SniperCommander.hpp"
 
 
 

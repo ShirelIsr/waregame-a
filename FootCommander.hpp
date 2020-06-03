@@ -1,19 +1,19 @@
 #ifndef WARGAME_A_FOOTCOMMANDER_HPP
 #define WARGAME_A_FOOTCOMMANDER_HPP
+#include "FootSoldier.hpp"
 
-#include "Soldier.hpp"
-#include "Board.hpp"
+using namespace std;
 
-namespace WarGame {
-    class Board;
-class FootCommander : public Soldier {
-public:
-    FootCommander(int player) : Soldier(player, 150) {};
-    ~FootCommander();
-    int damage_per_activity = 20;
-    virtual void action() ;
-};
+const int damage_fc =20;
+const int max_hp_fc =150;
+  
+    class FootCommander : public FootSoldier {
+    public:
+        int damage_per_activity = 100;
+       FootCommander(int player) : FootSoldier(player,max_hp_fc,damage_fc){};
+        ~ FootCommander();
+        void action(vector<vector<Soldier*>> &board, pair<int,int> source);
+    };
 
-}
 
 #endif //WARGAME_A_FOOTCOMMANDER_HPP

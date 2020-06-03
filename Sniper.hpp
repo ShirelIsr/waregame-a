@@ -1,18 +1,20 @@
 #pragma once
-#ifndef WARGAME_A_SNIPER_HPP
-#define WARGAME_A_SNIPER_HPP
+//#ifndef WARGAME_A_SNIPER_HPP
+//#define WARGAME_A_SNIPER_HPP
 
 #include "Soldier.hpp"
+using namespace std;
 
-namespace WarGame {
-    class Board;
+const int damge_s = 50;
+const int max_hp_s =100;
+ 
     class Sniper : public Soldier {
     public:
-        int damage_per_activity = 50;
-        Sniper(int player) : Soldier(player, 100) {};
-        ~Sniper();
+        Sniper(int player) : Soldier(player,max_hp_s,damge_s) {};
+        Sniper(int player,int max_hp,int damge) : Soldier(player,max_hp,damge) {};
+     
         void action(vector<vector<Soldier*>> &board, pair<int,int> source);
     };
-}
 
-#endif //WARGAME_A_SNIPER_HPP
+
+//#endif //WARGAME_A_SNIPER_HPP
