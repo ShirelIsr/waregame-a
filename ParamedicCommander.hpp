@@ -1,6 +1,6 @@
 #pragma once
-//#ifndef WARGAME_A_PARAMEDICCOMMANDER_HPP
-//#define WARGAME_A_PARAMEDICCOMMANDER_HPP
+#ifndef WARGAME_A_PARAMEDICCOMMANDER_HPP
+#define WARGAME_A_PARAMEDICCOMMANDER_HPP
 
 #include "Paramedic.hpp"
 
@@ -18,4 +18,4 @@ const int max_hp_pc =200;
     };
 
 
-//#endif //WARGAME_A_PARAMEDIC_HPP
+#endif //WARGAME_A_PARAMEDIC_HPP

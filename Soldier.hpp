@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
 namespace std{
     class Soldier {
@@ -12,7 +13,7 @@ namespace std{
         public:
         Soldier(int player, int max_hp,int demge) : player(player), max_health_points(max_hp),cur_health_points(max_hp), action_damge(demge){};
         virtual ~Soldier() { std::cout << "Destructing base \n"; };
-        virtual void action();
+        virtual void action(vector<vector<Soldier*>> &board, pair<int,int> source);
         int getHP(){ return cur_health_points; }
         void setHP(int hp) {cur_health_points=hp;}
         int getDamge(){return action_damge;}

@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Board.hpp"
+using namespace std;
+namespace WarGame{
 
 void WarGame::Board::move(uint player_number, std::pair<int,int> source, MoveDIR direction)
 {
@@ -42,7 +44,7 @@ void WarGame::Board::move(uint player_number, std::pair<int,int> source, MoveDIR
         }
 
         //check range
-        if((dest.first<0)||(dest.second<0) ||(dest.first>= board.size())||(dest.second>=board.size())
+        if((dest.first<0)||(dest.second<0) ||(dest.first>= board.size())||(dest.second>=board.size()))
          __throw_out_of_range("ERR,Exceeded game board limits");
          
          if((*this)[dest] != nullptr)
@@ -55,48 +57,6 @@ void WarGame::Board::move(uint player_number, std::pair<int,int> source, MoveDIR
         (temp)->action(board,dest);
 
 }
-std::pair<int,int> WarGame::Board::findNearest(uint player_number,std::pair<int,int> source){
-    int x= source.first , y=source.second;
-    int minDist=pow(board.size(),2);
-    std::pair<int,int> ret;
-    for (int i = 0; i < board.size(); ++i) 
-    {
-        for (int j = 0; j < board.at(0).size(); ++j)
-        {
-            if((board[i][j]!= nullptr) && (board[i][j]->player != player_number))
-            {
-                int col = std::sqrt(pow(i-x,2)+pow(j-y,2));
-                if(minDist>col)
-                {
-                    minDist=col;
-                    ret = {i,j};
-                }
-            }
-        }
-    }
-    return ret;
-}
-std::pair<int,int> WarGame::Board::findHighest(uint player_number, pair<int, int> source)
- {
-    int max=0;
-    std::pair<int,int> ret;
-    for (int i = 0; i < board.size(); ++i)
-     {
-        for (int j = 0; j < board.at(0).size(); ++j)
-         {
-            if((board[i][j]!= nullptr) && (board[i][j]->player != player_number))
-            {
-                if(board[i][j]->initial_health_points>max)
-                {
-                    max=board[i][j]->initial_health_points;
-                    ret = {i,j};
-                }
-            }
-        }
-    }
-    return ret;
-}
-
 
 bool WarGame::Board::isLegalMove(std::pair<int,int> source , MoveDIR direction)
 {
@@ -133,13 +93,12 @@ bool WarGame::Board::isLegalMove(std::pair<int,int> source , MoveDIR direction)
         }
 
         //check range
-        if((dest.first<0)||(dest.second<0) ||(dest.first>= board.size())||(dest.second>=board.size())
+        if((dest.first<0)||(dest.second<0) ||(dest.first>= board.size())||(dest.second>=board.size()))
         {
             return true;
         }
         return false;
          
-
 }
 
 bool WarGame::Board::has_soldiers(uint player_number) const{
@@ -149,7 +108,7 @@ bool WarGame::Board::has_soldiers(uint player_number) const{
         for (int j = 0; j < this->board.at(0).size() ; ++j) 
         {
 
-            if((board[i][j]!= nullptr) && (board[i][j]->player == player_number))
+            if((board[i][j]!= nullptr) && (board[i][j]->getPlayerNum() == player_number))
             {
                 return true;
             }
@@ -159,17 +118,15 @@ bool WarGame::Board::has_soldiers(uint player_number) const{
     return false;
 }
 
-WarGame::Soldier*& WarGame::Board::operator[](std::pair<int,int> location)
+Soldier*& Board::operator[](std::pair<int,int> location)
 {
     return board[location.first][location.second];
   
 }
-WarGame::Soldier* WarGame::Board::operator[](std::pair<int,int> location) const{
-    if(board[location.first][location.second]!= nullptr)
-     {
+Soldier* Board::operator[](std::pair<int,int> location) const{
+
         return board[location.first][location.second];
-    }
-    return nullptr;
 }
 
+}
 

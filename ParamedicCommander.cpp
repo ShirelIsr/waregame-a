@@ -67,3 +67,4 @@ void ParamedicCommander::action(vector<vector<Soldier*>> &board, pair<int,int> s
         }
     }
 }
+}

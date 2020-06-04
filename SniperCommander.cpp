@@ -1,6 +1,4 @@
 #include "SniperCommander.hpp"
-#include "sniper.hpp"
-
 #include <iostream>
 #include <vector>
 #include <math.h>
@@ -22,12 +20,12 @@ void SniperCommander::action(vector<vector<Soldier*>> &board, pair<int,int> sour
             {
              if (board[i][j]->getPlayerNum()!=board[source.first][source.second]->getPlayerNum())
            { 
-            if(board[i][j]->getHP>maxHP)
+            if(board[i][j]->getHP() > maxHP)
             {
-                maxHP=board[i][j]->getHP;
+                maxHP=board[i][j]->getHP();
                 dest.first=i;
                 dest.second=j;
-                target=board[i][j;
+                target=board[i][j];
 
             }
             }
@@ -37,7 +35,7 @@ void SniperCommander::action(vector<vector<Soldier*>> &board, pair<int,int> sour
 
     if(target->getHP()-board[source.first][source.second]->getHP() >0)
     {
-        target->setHealthPoint(target->getHealthPoint()-board[source.first][source.second]->getHP());
+        target->setHP(target->getHP()-board[source.first][source.second]->getHP());
     }
     else{
         target=nullptr;
@@ -60,4 +58,5 @@ void SniperCommander::action(vector<vector<Soldier*>> &board, pair<int,int> sour
            }
         }
     }
+}
 }

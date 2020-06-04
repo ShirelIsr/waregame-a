@@ -41,10 +41,12 @@ namespace WarGame {
         //      must be handled by polymorphism.
         void move(uint player_number, std::pair<int,int> source, MoveDIR direction);
         bool isLegalMove(std::pair<int,int> source , MoveDIR direction);
-        std::pair<int,int> findNearest(uint player_number ,pair<int,int> source );
-        std::pair<int,int> findHighest(uint player_number ,pair<int,int> source );
+    
         // returns true iff the board contains one or more soldiers of the given player.
         bool has_soldiers(uint player_number) const;
+
+            //std::pair<int,int> findNearest(uint player_number ,pair<int,int> source );
+       // std::pair<int,int> findHighest(uint player_number ,pair<int,int> source );
     };
 
 }

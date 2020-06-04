@@ -20,13 +20,13 @@ void FootSoldier::action(vector<vector<Soldier*>> &board, pair<int,int> source)
             if(board[i][j]!=nullptr)
             {
               if (board[i][j]->getPlayerNum()!=board[source.first][source.second]->getPlayerNum())
-           { dis=sqrt(pow(i-source.first,2)+pow(j-sourc.second,2));
+           { dis=sqrt(pow(i-source.first,2)+pow(j-source.second,2));
             if(dis<=minDis)
             {
                 minDis=dis;
                 dest.first=i;
                 dest.second=j;
-                target=board[i][j;
+                target=board[i][j];
 
             }
             }
@@ -34,9 +34,9 @@ void FootSoldier::action(vector<vector<Soldier*>> &board, pair<int,int> source)
         }
     }
 
-    if(target->getHealthPoint()-board[source.first][source.second] >0)
+    if(target-> getHP()-board[source.first][source.second]->getHP() >0)
     {
-        target->setHealthPoint(target->getHealthPoint()-board[source.first][source.second]);
+        target->setHP(target-> getHP()-board[source.first][source.second]->getHP());
     }
     else{
         target=nullptr;

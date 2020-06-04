@@ -1,6 +1,6 @@
 #pragma once
-//#ifndef WARGAME_A_PARAMEDIC_HPP
-//#define WARGAME_A_PARAMEDIC_HPP
+#ifndef WARGAME_A_PARAMEDIC_HPP
+#define WARGAME_A_PARAMEDIC_HPP
 
 
 #include "Soldier.hpp"
@@ -16,4 +16,4 @@ const int max_hp_p =100;
         void action(vector<vector<Soldier*>> &board, pair<int,int> source);
     };
 
-//#endif //WARGAME_A_PARAMEDIC_HPP
+#endif //WARGAME_A_PARAMEDIC_HPP
