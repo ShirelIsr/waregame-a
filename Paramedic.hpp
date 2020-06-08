@@ -11,8 +11,9 @@ const int max_hp_p =100;
  
     class Paramedic : public Soldier {
     public:
-        Paramedic(int player) : Soldier(player,max_hp_p,damge_p) {};
-        Paramedic(int player,int max_hp,int damge) : Soldier(player,max_hp,damge) {};
+        Paramedic(int player) : Soldier(player,max_hp_p,damge_p) {}
+        Paramedic(int player,int max_hp,int damge) : Soldier(player,max_hp,damge) {}
+        ~Paramedic(){ std::cout << "Destructing base \n"; };
         void action(vector<vector<Soldier*>> &board, pair<int,int> source);
     };
 

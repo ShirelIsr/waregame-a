@@ -4,42 +4,42 @@
 #include <math.h>
 #include <stdexcept>
 
-using namespace std;
+//using namespace std;
 
 void FootSoldier::action(vector<vector<Soldier*>> &board, pair<int,int> source)
 {
-    Soldier* target;
-    int minDis=INT8_MAX;
+      Soldier* target;
+     double minDis=board.size()*board.at(0).size();
     pair <int,int> dest;
-    int dis;
+    double dis;
+    Soldier* attack=board[source.first][source.second];
 
     for(int i=0;i<board.size();i++)
     {
         for(int j=0;j<board[i].size();j++)
         {
-            if(board[i][j]!=nullptr)
+            if((board[i][j]!=nullptr) && (board[i][j]->getPlayerNum()!=attack->getPlayerNum()))
             {
-              if (board[i][j]->getPlayerNum()!=board[source.first][source.second]->getPlayerNum())
-           { dis=sqrt(pow(i-source.first,2)+pow(j-source.second,2));
-            if(dis<=minDis)
+            dis=sqrt(pow(i-source.first,2)+pow(j-source.second,2));
+            if(dis < minDis)
             {
                 minDis=dis;
                 dest.first=i;
                 dest.second=j;
                 target=board[i][j];
-
             }
             }
             }
         }
-    }
-
-    if(target-> getHP()-board[source.first][source.second]->getHP() >0)
+    if(target==nullptr) return;
+    int hp=target->getHP()-attack->getDamge();
+    if(hp>0)
     {
-        target->setHP(target-> getHP()-board[source.first][source.second]->getHP());
+        target->setHP(hp);
     }
-    else{
-        target=nullptr;
+    else
+    {
         board[dest.first][dest.second]=nullptr;
     }
+    
 }

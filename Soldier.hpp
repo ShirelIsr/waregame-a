@@ -2,7 +2,11 @@
 #include <iostream>
 #include <vector>
 
-namespace std{
+
+using namespace std;
+
+//	using namespace WarGame;
+
     class Soldier {
     private:
         uint max_health_points;
@@ -11,15 +15,15 @@ namespace std{
         uint action_damge;
 
         public:
-        Soldier(int player, int max_hp,int demge) : player(player), max_health_points(max_hp),cur_health_points(max_hp), action_damge(demge){};
+        Soldier(int player, int max_hp,int demge) : player(player), max_health_points(max_hp),cur_health_points(max_hp), action_damge(demge){}
         virtual ~Soldier() { std::cout << "Destructing base \n"; };
-        virtual void action(vector<vector<Soldier*>> &board, pair<int,int> source);
-        int getHP(){ return cur_health_points; }
-        void setHP(int hp) {cur_health_points=hp;}
-        int getDamge(){return action_damge;}
-        int getPlayerNum(){return player;}
-        int getMaxHP(){return max_health_points;}
+        virtual void action(vector<vector<Soldier*>> &board, pair<int,int> source)=0;
+        int getHP(){ return cur_health_points; };
+        void setHP(int hp) {cur_health_points=hp;};
+        int getDamge(){return action_damge;};
+        int getPlayerNum(){return player;};
+        int getMaxHP(){return max_health_points;};
 
     };
-}
+
 

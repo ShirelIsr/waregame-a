@@ -4,7 +4,7 @@
 #include <math.h>
 #include <stdexcept>
 
-using namespace std;
+
 
 void Paramedic::action(vector<vector<Soldier*>> &board, pair<int,int> source)
 {
@@ -23,7 +23,7 @@ void Paramedic::action(vector<vector<Soldier*>> &board, pair<int,int> source)
         }
     }
     //i+1,j
-     if((i+1)<board.size()-1)
+     if((i+1)<=board.size()-1)
     {
         temp=board[i+1][j];
         if((temp!=nullptr)&&(temp->getPlayerNum()==board[i][j]->getPlayerNum()))
@@ -41,7 +41,7 @@ void Paramedic::action(vector<vector<Soldier*>> &board, pair<int,int> source)
         }
     }
     //i,j+1
-         if((j+1)<board.size()-1)
+         if((j+1)<=board.at(0).size()-1)
     {
         temp=board[i][j+1];
         if((temp!=nullptr)&&(temp->getPlayerNum()==board[i][j]->getPlayerNum()))

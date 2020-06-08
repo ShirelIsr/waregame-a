@@ -11,6 +11,7 @@ void Sniper::action(vector<vector<Soldier*>> &board, pair<int,int> source)
     Soldier* target;
     int maxHP=INT8_MIN;
     pair <int,int> dest;
+    Soldier *attack=board[source.first][source.second];
 
     for(int i=0;i<board.size();i++)
     {
@@ -18,9 +19,9 @@ void Sniper::action(vector<vector<Soldier*>> &board, pair<int,int> source)
         {
             if(board[i][j]!=nullptr)
             {
-             if (board[i][j]->getPlayerNum()!=board[source.first][source.second]->getPlayerNum())
+             if (board[i][j]->getPlayerNum()!=attack->getPlayerNum())
            { 
-            if(board[i][j]->getHP() >maxHP)
+            if(board[i][j]->getHP() >= maxHP)
             {
                 maxHP=board[i][j]->getHP();
                 dest.first=i;
@@ -33,9 +34,9 @@ void Sniper::action(vector<vector<Soldier*>> &board, pair<int,int> source)
         }
     }
 
-    if(target->getHP()-board[source.first][source.second]->getHP() >0)
+    if(target->getHP()-attack->getDamge()>0)
     {
-        target->setHP(target->getHP()-board[source.first][source.second]->getHP());
+        target->setHP(target->getHP()-attack->getDamge ());
     }
     else{
         target=nullptr;

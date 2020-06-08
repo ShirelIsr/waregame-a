@@ -9,9 +9,8 @@ const int max_hp_fc =150;
   
     class FootCommander : public FootSoldier {
     public:
-        int damage_per_activity = 100;
-       FootCommander(int player) : FootSoldier(player,max_hp_fc,damage_fc){};
-        ~ FootCommander();
+       FootCommander(int player) : FootSoldier(player,max_hp_fc,damage_fc){}
+        ~ FootCommander(){ std::cout << "Destructing base \n"; };
         void action(vector<vector<Soldier*>> &board, pair<int,int> source);
     };
 

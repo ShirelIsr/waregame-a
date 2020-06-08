@@ -11,9 +11,9 @@ const int max_hp_sc =120;
   
     class SniperCommander : public Sniper {
     public:
-        int damage_per_activity = 100;
-        SniperCommander(int player) : Sniper(player,max_hp_sc,damage_sc){};
-        ~SniperCommander();
+        SniperCommander(int player) : Sniper(player,max_hp_sc,damage_sc){}
+         SniperCommander(int player,int max_hp,int damge) : Sniper(player,max_hp,damge) {}
+        ~SniperCommander(){ std::cout << "Destructing base \n"; };
         void action(vector<vector<Soldier*>> &board, pair<int,int> source);
     };
 

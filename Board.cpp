@@ -5,12 +5,11 @@ namespace WarGame{
 
 void WarGame::Board::move(uint player_number, std::pair<int,int> source, MoveDIR direction)
 {
-        Soldier* temp = (*this)[source];
+        Soldier* temp = board[source.first][source.second];
+          if(temp==nullptr) __throw_invalid_argument("ERR, ther is no soldier ");
           if(temp->getPlayerNum() != player_number) __throw_invalid_argument("ERR,The soldier belongs to the other player");
-        if(temp==nullptr) __throw_invalid_argument("ERR, ther is no soldier ");
       
-     //   board[source.first][source.second]= nullptr;
-        
+     
         pair<int,int> dest;
 
         switch (direction)
@@ -44,17 +43,18 @@ void WarGame::Board::move(uint player_number, std::pair<int,int> source, MoveDIR
         }
 
         //check range
-        if((dest.first<0)||(dest.second<0) ||(dest.first>= board.size())||(dest.second>=board.size()))
-         __throw_out_of_range("ERR,Exceeded game board limits");
+        if((dest.first<0)||(dest.second<0) ||(dest.first>= board.size())||(dest.second>=board.at(0).size()))
+        { __throw_out_of_range("ERR,Exceeded game board limits");
+        }
          
          if((*this)[dest] != nullptr)
          {
              throw invalid_argument("ERR, A soldier already exists in this location");
          }
 
-        (*this)[source]=nullptr;
-        (*this)[dest]=temp;
-        (temp)->action(board,dest);
+         board[dest.first][dest.second]=temp;
+        board[source.first][source.second]=nullptr;
+        temp->action(board,dest);
 
 }
 
@@ -105,15 +105,18 @@ bool WarGame::Board::has_soldiers(uint player_number) const{
 
     for (int i = 0; i < this->board.size() ; ++i) 
     {
-        for (int j = 0; j < this->board.at(0).size() ; ++j) 
+        for (int j = 0; j < this->board.at(i).size() ; ++j) 
         {
-
-            if((board[i][j]!= nullptr) && (board[i][j]->getPlayerNum() == player_number))
+            Soldier *temp=board[i][j];
+            if(temp != nullptr)
             {
-                return true;
-            }
-
+                if (temp->getPlayerNum() == player_number) 
+                {
+                    return true;
+                }
         }
+
+    }
     }
     return false;
 }

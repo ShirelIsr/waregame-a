@@ -10,9 +10,9 @@ const int max_hp_s =100;
  
     class Sniper : public Soldier {
     public:
-        Sniper(int player) : Soldier(player,max_hp_s,damge_s) {};
-        Sniper(int player,int max_hp,int damge) : Soldier(player,max_hp,damge) {};
-     
+        Sniper(int player) : Soldier(player,max_hp_s,damge_s) {}
+        Sniper(int player,int max_hp,int damge) : Soldier(player,max_hp,damge) {}
+        ~Sniper(){ std::cout << "Destructing base \n"; };
         void action(vector<vector<Soldier*>> &board, pair<int,int> source);
     };
 
