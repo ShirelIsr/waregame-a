@@ -47,7 +47,7 @@ void WarGame::Board::move(uint player_number, std::pair<int,int> source, MoveDIR
         { __throw_out_of_range("ERR,Exceeded game board limits");
         }
          
-         if((*this)[dest] != nullptr)
+         if( board[dest.first][dest.second] != nullptr)
          {
              throw invalid_argument("ERR, A soldier already exists in this location");
          }
